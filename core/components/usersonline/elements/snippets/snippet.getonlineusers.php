@@ -13,14 +13,14 @@
     if (isset($scriptProperties['contexts'])) {
         $contextsArray = explode(',', $scriptProperties['contexts']);
     }
-    if(isset($scriptProperties['innerJoin'])){
+    if (isset($scriptProperties['innerJoin'])) {
         $innerJoin = $modx->fromJSON($scriptProperties['innerJoin']);
     }
     $innerJoin['UsersOnline'] = array(
         'class' => 'userOnline',
         'on'    => 'modUser.id = UsersOnline.user_id',
     );
-    if(isset($scriptProperties['select'])){
+    if (isset($scriptProperties['select'])) {
         $select = $modx->fromJSON($scriptProperties['select']);
     }
     $select['UsersOnline'] = '*';
@@ -28,7 +28,7 @@
     $time = time();
     $startTime = $time - $timeSpan;
     $where = array();
-    if(isset($scriptProperties['where'])){
+    if (isset($scriptProperties['where'])) {
         $where = $modx->fromJSON($scriptProperties['where']);
     }
     $where[] = array(
