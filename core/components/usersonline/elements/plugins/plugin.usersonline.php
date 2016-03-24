@@ -9,7 +9,7 @@
         case 'OnMODXInit':
             $context = $modx->context->key;
             if (!$mgr = $modx->getOption('usersonline_mgr_check') and $context == 'mgr') {
-                return '';
+                break;
             }
             if ($user = $modx->getAuthenticatedUser($context)) {
                 $blocked = 0;
@@ -18,7 +18,7 @@
                     $blocked = $profile->get('blocked');
                 }
                 if (!$active and $blocked) {
-                    $response = $this->modx->runProcessor('security/access/flush', array());
+                    $response = $modx->runProcessor('security/access/flush', array());
                 }
                 $id = $user->get('id');
                 if (!$userOnline = $modx->getObject('userOnline', array('user_id' => $id, 'context_key' => $context))) {
