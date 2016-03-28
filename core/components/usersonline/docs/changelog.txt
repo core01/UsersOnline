@@ -1,5 +1,14 @@
 Changelog for UsersOnline.
 
+0.1.0-rc2
+==============
+- Added: timeInterval parameter for getOnlineUsers.
+
+0.1.0-rc1
+==============
+- Added: The call of /security/logout/ processor for inactive, banned users.
+- Added: Redirect to main page after /security/logout/ processor's call.
+
 0.0.1-beta
 ==============
-- Выпущена первая версия с базовым функционалом
+- Initial release.

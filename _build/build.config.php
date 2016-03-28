@@ -5,7 +5,7 @@
     define('PKG_NAME_LOWER', strtolower(PKG_NAME));
 
     define('PKG_VERSION', '0.1.0');
-    define('PKG_RELEASE', 'rc1');
+    define('PKG_RELEASE', 'rc2');
     define('PKG_AUTO_INSTALL', true);
     define('PKG_NAMESPACE_PATH', '{core_path}components/' . PKG_NAME_LOWER . '/');
 
@@ -43,7 +43,7 @@
 //define('BUILD_PERMISSION_UPDATE', true);
 
     define('BUILD_CHUNK_STATIC', false);
-    define('BUILD_SNIPPET_STATIC', false);
+    define('BUILD_SNIPPET_STATIC', true);
     define('BUILD_PLUGIN_STATIC', true);
 
     $BUILD_RESOLVERS = array(
