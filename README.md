@@ -1,40 +1,41 @@
-Список пользователей онлайн и сброс авторизации заблокированного пользователя
+# UsersOnline
+List of online users and a blocked user authorization reset
 
-## Возможности
-* Фиксирует дату крайнего появления каждого пользователя (во всех контекстах)
-* Выводит список пользователей онлайн на сайте
-* Сбрасывает авторизацию отключенных и заблокированных пользователей
+## Features
+* Fixes the date of the last visit of each user (in all contexts)
+* Displays a list of online users on the website
+* Revokes authorizations of disconnected and blocked users
 
 
-## Фиксация даты появления пользователя
+## Fixing the date of the user visit
 
-Для этого используется объект *UserOnline*, в котором фиксируется: 
-* ID пользователя
-* Текущий контекст
-* Дата и время появления
+For this purpose *UserOnline* object that is fixed:
+* user ID
+* current context
+* Visit datetime
 
-Появление пользователя в контексте *mgr* тоже фиксируется. Чтобы это отключить, выставьте системную настройку **usersonline_mgr_check** в *«Нет»*.
+User visits in the *mgr* context also recorded. To turn of this, put the system setting **usersonline_mgr_check** to *«No»*.
 
-## Вывод списка пользователей онлайн
+## Show the list of users online
 
-Для этой задачи используется сниппет *UsersOnline*, который является оберткой над *pdoUsers*. Соответственно, оформлением результатов занимается *pdoUsers*, которому передаются все параметры вызова.  
+For this task used *getOnlineUsers* snippet, which wraps *pdoUsers*. Accordingly, for design of the results involved *pdoUsers*, which is passed the call parameters
 
-### Параметры сниппета *UsersOnline*: 
+### Snippet *getOnlineUsers* parameters: 
 
-| Название              | По умолчанию                                      | Описание                                                                  |
+| Name              | Default                                      | Description                                                                  |
 | --------------------- | ------------------------------------------------- | ------------------------------------------------------------------------- |
-| **&contexts**         | Пустое значение (проверка во всех контекстах)     | Список контекстов через запятую, в которых проверяются пользователи       |
-| **&timeInterval**     | -1 (взять значение из системной настройки *usersonline_time_span*)    | Время в секундах, в течение которого пользователь считается находящимся на сайте       |  
+| **&contexts**         | Null value  (includes all contexts)     | Comma-separated list of parents, to check users     |
+| **&timeInterval**     | -1 (getting the value from system setting *usersonline_time_span*)    | Time in seconds, during which the user is considered to be online      |  
   
 
-#### Системная настройка компонента:
+#### System setting of component:
 
-| Название                     | По умолчанию                        | Описание                                                                         |
+| Name                     | Default                        | Description                                                                         |
 | ---------------------------- | ----------------------------------- | -------------------------------------------------------------------------------- |
-| **usersonline_time_span**    | 900                                 | Время в секундах, в течение которого пользователь считается находящимся на сайте |
+| **usersonline_time_span**    | 900                                 | Time in seconds, during which the user is considered to be online  |
 
 
-## Сброс авторизации заблокированным пользователям
+## Reset authorization of blocked users
 
-По умолчанию в MODX, после блокировки пользователь может делать на сайте все, что угодно, пока жива его сессия.
-Плагин *UsersOnline* проверяет, активен ли текущий пользователь. Если он заблокирован или отключен, будет запущен автоматический выход из системы и перенаправление на главную страницу, после чего беззаботная жизнь нарушителя закончится.
+By default in MODX, after user was banned he can do everything, he want, while his session is still alive.
+Plugin *UsersOnline* check, if current user is active. If he banned or inactive, automatic logoff will be launched and he will be redirected to the main page, after that carefree life of the offender is over.
