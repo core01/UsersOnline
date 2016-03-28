@@ -10,31 +10,32 @@
     if (!$pdo = $modx->getService('pdoTools')) {
         return $modx->lexicon('no_pdo');
     }
-    if (isset($scriptProperties['contexts'])) {
-        $contextsArray = explode(',', $scriptProperties['contexts']);
+    $interval = $modx->getOption('timeInterval', $scriptProperties, -1);
+    if ($interval == -1) {
+        $interval = $modx->getOption('usersonline_time_span');
     }
-    if (isset($scriptProperties['innerJoin'])) {
-        $innerJoin = $modx->fromJSON($scriptProperties['innerJoin']);
-    }
+    $contexts = $modx->getOption('contexts', $scriptProperties, null);
+    $innerJoin = $modx->getOption('innerJoin', $scriptProperties, '');
+    $innerJoin = $modx->fromJSON($innerJoin);
     $innerJoin['UsersOnline'] = array(
         'class' => 'userOnline',
         'on'    => 'modUser.id = UsersOnline.user_id',
     );
-    if (isset($scriptProperties['select'])) {
-        $select = $modx->fromJSON($scriptProperties['select']);
-    }
+    $select = $modx->getOption('select', $scriptProperties, '');
+    $select = $modx->fromJSON($select);
     $select['UsersOnline'] = '*';
-    $timeSpan = $modx->getOption('usersonline_time_span');
     $time = time();
-    $startTime = $time - $timeSpan;
-    $where = array();
-    if (isset($scriptProperties['where'])) {
-        $where = $modx->fromJSON($scriptProperties['where']);
-    }
+    $startTime = $time - $interval;
+    $where = $modx->getOption('where', $scriptProperties, '');
+    $where = $modx->fromJSON($where);
     $where[] = array(
         'UsersOnline.lastvisit:>=' => $startTime,
         'UsersOnline.lastvisit:<=' => $time,
     );
+    $contextsArray = array();
+    if ($contexts != null) {
+        $contextsArray = explode(',', $contexts);
+    }
     if (!empty($contextsArray)) {
         $where[] = array(
             'UsersOnline.context_key:IN' => $contextsArray,

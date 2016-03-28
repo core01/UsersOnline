@@ -3,10 +3,14 @@
     $properties = array();
 
     $tmp = array(
-        'contexts' => array(
+        'contexts'     => array(
             'type'  => 'textfield',
             'value' => '',
         ),
+        'timeInterval' => array(
+            'type'  => 'textfield',
+            'value' => '-1',
+        )
     );
 
     foreach ($tmp as $k => $v) {
