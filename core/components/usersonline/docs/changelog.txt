@@ -1,5 +1,9 @@
 Changelog for UsersOnline.
 
+0.1.0-rc3
+==============
+- Fixed: Displaying snippet properties.
+
 0.1.0-rc2
 ==============
 - Added: timeInterval parameter for getOnlineUsers.
