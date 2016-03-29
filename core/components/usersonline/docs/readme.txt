@@ -1,11 +1,13 @@
 --------------------
 UsersOnline
 --------------------
-Idea: Mikhail S. Voevodskiy <mv@aaa0.ru>
-Author: Roman Sadoyan <sadoyan92@gmail.com>
+Idea: Mikhail S. Voevodskiy
+Author: Roman Sadoyan
+Website: http://compaero.ru
+Mail : extras@compaero.ru
 --------------------
 
-Выводит список пользователей находившихся в онлайне за указанный промежуток времени.
+List of online users and a blocked user authorization reset.
 
 Feel free to suggest ideas/improvements/bugs on bitbucket.org:
 https://bitbucket.org/compaero/usersonline/issues
